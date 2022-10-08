@@ -70,6 +70,7 @@ class Ret2dl:
         self.our_jmprel = self.our_symtab + SYMTAB.size
         self.jmprel = JMPREL(self.our_strtab, self.our_symtab, SymTab)
 
+        self.index = self.our_jmprel - JmpRel 
         self.args = args
         self.args_offset = []
         arg_addr = self.our_jmprel + JMPREL.size 
@@ -106,6 +107,9 @@ class Ret2dl:
 
     def arg_offset(self, index):
         return self.args_offset[index]
+
+    def dl_index(self):
+        return self.index
 
 
 def hex_align(addr, y):
